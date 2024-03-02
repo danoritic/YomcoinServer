@@ -59,7 +59,7 @@ app = FastAPI(title='Yomcoin Server')
 
 
 if not firebase_admin._apps:
-    cred = credentials.Certificate("serviceAccountKey.json")
+    cred = credentials.Certificate("credFromMain.json")
     firebase_admin.initialize_app(cred)
     
     # ,{"databaseURL":''}
@@ -157,15 +157,26 @@ class DatabaseHandler:
 # https://yomcoin-dbd48-default.firebaseio.com
 
 
+# firebaseConfig = {
+#     "apiKey": "AIzaSyCoNMwdUjdo_p1VUd2LYH6YaR7KflmkAgY",
+#   "authDomain": "yomcoinserver.firebaseapp.com",
+#   "projectId": "yomcoinserver",
+#   "storageBucket": "yomcoinserver.appspot.com",
+#   "messagingSenderId": "562071143831",
+#   "appId": "1:562071143831:web:5857d5c1ff7ba9a8ec70d2",
+#   "measurementId": "G-E5K0RHJMQY",
+#   "databaseURL":''
+# }
+
 firebaseConfig = {
-    "apiKey": "AIzaSyCoNMwdUjdo_p1VUd2LYH6YaR7KflmkAgY",
-  "authDomain": "yomcoinserver.firebaseapp.com",
-  "projectId": "yomcoinserver",
-  "storageBucket": "yomcoinserver.appspot.com",
-  "messagingSenderId": "562071143831",
-  "appId": "1:562071143831:web:5857d5c1ff7ba9a8ec70d2",
-  "measurementId": "G-E5K0RHJMQY",
-  "databaseURL":''
+  "apiKey": "AIzaSyBUiMfg3XecwfkQPOPXfXpEULaU1BPKUGg",
+  "authDomain": "yomcoin-75160.firebaseapp.com",
+  "projectId": "yomcoin-75160",
+  "storageBucket": "yomcoin-75160.appspot.com",
+  "messagingSenderId": "146612941001",
+  "appId": "1:146612941001:web:c154afa7a733bc5e60dd18",
+  "measurementId": "G-4YK6VB7S41",
+   "databaseURL":''
 }
 
 
