@@ -1,0 +1,3 @@
+client_id="A1xWVbvPaWO2HNDlsjQEpYjFE7jgwUy4"
+client_secret="HEl8CnUlzq-G6ZoGxzY07ktuVrlGw9-QP7h6px9dHeD6UdN0RUB66EdGhO1tQ82"
+token=None

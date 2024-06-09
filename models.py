@@ -1,3 +1,4 @@
+import datetime
 from typing import Optional
 from pydantic import BaseModel
 
@@ -7,7 +8,7 @@ class SignUpSchema(BaseModel):
     firstName: Optional[str] = None
     lastName: Optional[str] = None
     PhoneNumber: Optional[str] = None
-    brithday: Optional[str] = None
+    birthday: Optional[str] = None
     gender: Optional[str] = None
     deviceID: Optional[str] = None
     
@@ -34,6 +35,7 @@ class LoginSchema(BaseModel):
             }
         }
 class resetPasswordSchema(BaseModel):
+    email:str
     oldPassword:str
     newPassword:str
 class forgotPasswordSchema(BaseModel):
@@ -58,8 +60,20 @@ class cablePurchaseModelSchema(BaseModel):
     CableTV:str
     SmartCardNo:str
     Package:str
-    
 
+class transactionStoreModel(BaseModel):
+    userEmail:str
+    transactionDetails:str
+    userId:str
+    serviceType:str
+    date:str
+class transactionGetModel(BaseModel):
+    startDate:str|None
+    endDate:str|None
+    userId:str
+
+
+# transactionStoreModel
 
 class userFieldModelSchema(BaseModel):
     email:str
@@ -70,10 +84,30 @@ class getCoinEstimateModelSchema(BaseModel):
     currency_from:str
     currency_to:str
     amount:str
+# class getAllCoinEstimate(BaseModel):
+#     fixed:str
+#     currency_from:str
+#     currency_to:str
+#     amount:str
+
 class getCurrencyPairModelSchema(BaseModel):
-    fixed:str
+    fixed:str|None
     symbol:str
-class getCurrencyPairModelSchema(BaseModel):
+class getingCompanyAddressModel(BaseModel):
+    userId:str
+
+class sendCoinModel(BaseModel):
+    fixed: str
+    currency_from:str
+    currency_to:str
+    amount:str
+    address_to:str
+    extra_id_to:str
+    user_refund_address:str
+    user_refund_extra_id:str
+
+# getingCompanyAddressModel
+class getCurrencyRangeModelSchema(BaseModel):
     fixed:str
     currency_from:str
     currency_to: str
@@ -98,11 +132,53 @@ class createCryptoWalletModelSchema(BaseModel):
     address:str
     cryptoTokenName:str
 
+class verifyAndCredit(BaseModel):
+    userEmail:str
+    userID:str
+    amount:str
 
+class debitModel(BaseModel):
+    # {"Content-Type": "application/json"}
+    userID:str
+    amount:str
+class AmountModel(BaseModel):
+    # {"Content-Type": "application/json"}
+    userID:str
+
+class getTokenModel(BaseModel):
+    userID:str
+
+class orderGiftcardModel(BaseModel):
+    token:str
+    userID:str
+    userEmail:str
+    productId:str
+    quantity:str
+    unitPrice:str
+    senderName:str
+    phoneCountryCode:str|None
+    phoneNumber:str
+    
+class getGiftcardRedemptionCodeModel(BaseModel):
+    token:str
+    transactionId:str
+    
+class getGiftcardsAvailableModel(BaseModel):
+    token:str
+    page:str
+    productName:str
+    countryCode:str
+
+
+
+# ?size=10&page=1&productName=Amazon&countryCode=US& =true&includeFixed=true"
+
+# AmountModel orderGiftcardModel
 
 class electricBillPurchaseModelSchema(BaseModel):
     ElectricCompany:str
     MeterType:str
+    MeterNo:str
     Amount:str
     PhoneNo:str
 class electricMeterNumberVerificationModelSchema(BaseModel):
@@ -119,3 +195,6 @@ class AirtimePurchaseModelSchema(BaseModel):
 
 
 
+class createCardBINModelSchema(BaseModel):
+    cardBIN:str
+    
