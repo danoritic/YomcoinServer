@@ -1095,8 +1095,8 @@ if __name__=="__main__":
     # docker run --name localContainer --rm -d -p 8080:80 yomserver
     # docker run --name server22 --rm -d -p 8080:80 gcr.io/yomcoin-75160/yomserver2:1.0
     # gcr.io/yomcoin-75160/yomserver2:1.0
-    # uvicorn.run('main:app',reload=True,host="0.0.0.0", port=8080)
-    uvicorn.run('main:app',reload=True,host="192.168.43.239", port=8080)
+    uvicorn.run('main:app',reload=True,host="0.0.0.0", port=8080)
+    # uvicorn.run('main:app',reload=True,host="192.168.43.239", port=8080)
     
     # r=requests.post("http://192.168.43.239/getCompanyAddress",data={'userId':"dhsdjh"})
     # print(r)                                                                                                                                                            
