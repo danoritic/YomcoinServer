@@ -960,7 +960,9 @@ async def order_giftcard(details:getTokenModel):
 
 @app.post("/order_giftcard")
 async def order_giftcad(details:orderGiftcardModel):
-    url = "https://giftcards-sandbox.reloadly.com/orders"
+    # url = "https://giftcards-sandbox.reloadly.com/orders"
+    url = "https://giftcards.reloadly.com/orders"
+    
     customId=f"yomid_giftcard_{details.userID}_{datetime.now()}"
     
 
@@ -992,9 +994,9 @@ async def order_giftcad(details:orderGiftcardModel):
 @app.post("/get_redemption_code")
 async def get_redemption_code(details:getGiftcardRedemptionCodeModel):
     # TEST
-    url = f"https://giftcards-sandbox.reloadly.com/orders/transactions/{details.transactionId}/cards"
+    # url = f"https://giftcards-sandbox.reloadly.com/orders/transactions/{details.transactionId}/cards"
     # LIVE
-    # url = f"https://giftcards.reloadly.com/orders/transactions/{details.transactionId}/cards"
+    url = f"https://giftcards.reloadly.com/orders/transactions/{details.transactionId}/cards"
     
     
 
@@ -1010,12 +1012,13 @@ async def get_redemption_code(details:getGiftcardRedemptionCodeModel):
 @app.post("/get_available_giftcards")
 async def get_available_giftcards(details:getGiftcardsAvailableModel):
     # Test
-    url = "https://giftcards-sandbox.reloadly.com/products"
+    # url = "https://giftcards-sandbox.reloadly.com/products"
     # LIVE
-    # url = https://giftcards.reloadly.com/products
+    url = "https://giftcards.reloadly.com/products"
 
     # ?size=10&page=1&productName=Amazon&countryCode=US&includeRange=true&includeFixed=true"
-    body:dict=details.model_dump
+    body:dict=details.dict()
+
     body.pop("transactionId")
     body.pop("token")
     body["includeRange"]=True
