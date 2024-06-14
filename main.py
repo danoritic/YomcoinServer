@@ -953,6 +953,10 @@ async def order_giftcard(details:getTokenModel):
     response = requests.post(url, json=payload, headers=headers)
 
     print(response.text)
+    return (response.text)
+    
+    
+
 
 @app.post("/order_giftcard")
 async def order_giftcad(details:orderGiftcardModel):
