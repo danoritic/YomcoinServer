@@ -25,6 +25,11 @@ class LoginSchema(BaseModel):
     email:str
     password:str
     deviceID:str
+    # {
+    #     "email":"str",
+    # "password":"str",
+    # "deviceID":"str",
+    # }
 
     class Config:
         schema_extra={

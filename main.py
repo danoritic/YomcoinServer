@@ -343,33 +343,41 @@ async def create_access_token(userData:LoginSchema):
     userdb:DatabaseHandler =DatabaseHandler(collectionName='users')
     
     # firebase.auth().
-    userDetail= userdb.getDocContent(email)
-    if (not userDetail['islogedin'])or (userDetail['islogedin'] and userDetail['Device_ID']==userData.deviceID):
-        user= firebase.auth().sign_in_with_email_and_password(email=email,password=password)
-        userdb.updateDoc({'islogedin':True,
-                        "Device_ID":deviceID},email)
-    
+    try:
         userDetail= userdb.getDocContent(email)
+        if (not userDetail['islogedin'])or (userDetail['islogedin'] and userDetail['Device_ID']==userData.deviceID):
+            user= firebase.auth().sign_in_with_email_and_password(email=email,password=password)
+            userdb.updateDoc({'islogedin':True,
+                            "Device_ID":deviceID},email)
         
-        # user['idToken']
-        outputData={"status":True,"data":[
-            {"Name":f"{userDetail['firstName']} {userDetail['lastName']}",
-                "Unique_ID":userDetail['Unique_ID'],
-                                        "Phone":userDetail["phoneNumber"],
-                                        "token":user['idToken'],
-                                        "Gender":userDetail["gender"],
-                                        "Device_ID":"QP1A190711020",
-                                        "Email":userDetail["email"],
-                                        "birthday":userDetail["birthday"],
-                                        'accountLevel':userDetail["account_level"]
-                                        # "Fb_UID":"343753e0-9dee-1db8-9906-490dbd0a707d",
-                                        }],
-                "message":"Congrats, you're successfully logged in"
-                
-                }
-        print(4)
-        return JSONResponse(content=outputData,status_code=200)
-    return JSONResponse(content={'status':False,"data":None,"message":'user already logged in'},status_code=300)
+            userDetail= userdb.getDocContent(email)
+            
+            # user['idToken']
+            outputData={"status":True,"data":[
+                {"Name":f"{userDetail['firstName']} {userDetail['lastName']}",
+                    "Unique_ID":userDetail['Unique_ID'],
+                                            "Phone":userDetail["phoneNumber"],
+                                            "token":user['idToken'],
+                                            "Gender":userDetail["gender"],
+                                            "Device_ID":"QP1A190711020",
+                                            "Email":userDetail["email"],
+                                            "birthday":userDetail["birthday"],
+                                            'accountLevel':userDetail["account_level"]
+                                            # "Fb_UID":"343753e0-9dee-1db8-9906-490dbd0a707d",
+                                            }],
+                    "message":"Congrats, you're successfully logged in"
+                    
+                    }
+            print(4)
+            return JSONResponse(content=outputData,status_code=200)
+        return JSONResponse(content={'status':False,"data":None,"message":'user already logged in'},status_code=300)
+    except e:
+        return JSONResponse(content={'status':False,"data":None,"message":'Error occured while login in'},status_code=300)    
+
+        
+
+    
+    
     
     
 # Login Ended ****************************************************************************
