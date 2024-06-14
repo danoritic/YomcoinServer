@@ -171,7 +171,7 @@ class getGiftcardRedemptionCodeModel(BaseModel):
 class getGiftcardsAvailableModel(BaseModel):
     token:str
     page:str
-    productName:str
+    productName:str | None
     countryCode:str
 
 
