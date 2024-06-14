@@ -929,7 +929,7 @@ async def getAmount(detail:AmountModel):
 async def order_giftcard(details:getTokenModel):
     url = "https://auth.reloadly.com/oauth/token"
 
-    payload = {
+    payload =json.dumps(obj= {
         "client_id":rll.client_id ,
         "client_secret": rll.client_secret,
         "grant_type": "client_credentials",
@@ -942,7 +942,7 @@ async def order_giftcard(details:getTokenModel):
         
         
 
-    }
+    })
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json"
