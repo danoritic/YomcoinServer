@@ -1019,8 +1019,7 @@ async def get_available_giftcards(details:getGiftcardsAvailableModel):
     # ?size=10&page=1&productName=Amazon&countryCode=US&includeRange=true&includeFixed=true"
     body:dict=details.dict()
 
-    body.pop("transactionId")
-    body.pop("token")
+    
     body["includeRange"]=True
     body["includeFixed"]=True
     body["size"]=30
