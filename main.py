@@ -371,7 +371,7 @@ async def create_access_token(userData:LoginSchema):
             print(4)
             return JSONResponse(content=outputData,status_code=200)
         return JSONResponse(content={'status':False,"data":None,"message":'user already logged in'},status_code=300)
-    except e:
+    except:
         return JSONResponse(content={'status':False,"data":None,"message":'Error occured while login in'},status_code=300)    
 
         
