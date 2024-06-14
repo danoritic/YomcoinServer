@@ -552,7 +552,7 @@ async def buyAirtime(cableDetail:AirtimePurchaseModelSchema):
     # userData:resetPasswordSchema
     # userID=ck.UserID
     
-    url2=f'www.nellobytesystems.com/APIAirtimeV1.asp'
+    url2=f'https://www.nellobytesystems.com/APIAirtimeV1.asp'
     param=cableDetail.dict()
     param.update({'UserID': ck.UserID,
     'APIKey': ck.API_KEY})
