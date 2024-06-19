@@ -1042,7 +1042,9 @@ async def get_available_giftcards(details:getGiftcardsAvailableModel):
 
     response = requests.get(url, headers=headers,params=body)
 
-    print(response.text)
+    # print(response.text)
+    return response.text
+    
 
 # ******************************************************************
 
