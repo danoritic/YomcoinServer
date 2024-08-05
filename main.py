@@ -22,10 +22,10 @@ from paystackapi.verification import Verification
 import google.cloud.firestore_v1.base_document as dcmnt
 
 
-paystack=Paystack(secret_key="sk_test_1a459d3a81a41eb267f40f58e11e28f2b0008dba")
+paystack=Paystack(secret_key="sk_live_15aee28dfecdf526873da41d7c09bfb71bb47f20")
 
 # sk_live_15aee28dfecdf526873da41d7c09bfb71bb47f20
-
+# sk_test_1a459d3a81a41eb267f40f58e11e28f2b0008dba
 
 # blockcyper
 from blockcypher import create_wallet_from_address
@@ -926,7 +926,7 @@ async def getAmount(detail:AmountModel):
 
 # gift card endpoints **********************************************
 @app.post("/getToken")
-async def order_giftcard(details:getTokenModel):
+async def getToken(details:getTokenModel):
     url = "https://auth.reloadly.com/oauth/token"
 
     payload = {
@@ -959,7 +959,7 @@ async def order_giftcard(details:getTokenModel):
 
 
 @app.post("/order_giftcard")
-async def order_giftcad(details:orderGiftcardModel):
+async def order_giftcard(details:orderGiftcardModel):
     # url = "https://giftcards-sandbox.reloadly.com/orders"
     url = "https://giftcards.reloadly.com/orders"
     
