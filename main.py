@@ -24,9 +24,6 @@ import google.cloud.firestore_v1.base_document as dcmnt
 
 paystack=Paystack(secret_key="sk_live_15aee28dfecdf526873da41d7c09bfb71bb47f20")
 
-# sk_live_15aee28dfecdf526873da41d7c09bfb71bb47f20
-# sk_test_1a459d3a81a41eb267f40f58e11e28f2b0008dba
-
 # blockcyper
 from blockcypher import create_wallet_from_address
 import blockcypher as bcy
@@ -47,7 +44,7 @@ from firebase_admin import credentials,auth
 # from firebase_admin.auth
 
 import pyrebase
-# import pyrebase.
+
 
 
 from models import (AirtimePurchaseModelSchema, AmountModel, LogoutSchema,
@@ -92,9 +89,6 @@ import reloadly_key as rll
 
 app = FastAPI(title='Yomcoin Server')
 
-# @app.get("/items/{item_id}")
-# async def create_item(item_id: int):
-#     return {"item_id": item_id }
 
 
 
@@ -103,10 +97,9 @@ if not firebase_admin._apps:
     cred = credentials.Certificate("credFromMain.json")
     firebase_admin.initialize_app(cred)
 
-    # ,{"databaseURL":''}
+    
 db = firestore.client()
 
-# db.collection('users').stream()
 
 
 
@@ -198,17 +191,6 @@ class DatabaseHandler:
 # https://yomcoin-dbd48-default.firebaseio.com
 
 
-# firebaseConfig = {
-#     "apiKey": "AIzaSyCoNMwdUjdo_p1VUd2LYH6YaR7KflmkAgY",
-#   "authDomain": "yomcoinserver.firebaseapp.com",
-#   "projectId": "yomcoinserver",
-#   "storageBucket": "yomcoinserver.appspot.com",
-#   "messagingSenderId": "562071143831",
-#   "appId": "1:562071143831:web:5857d5c1ff7ba9a8ec70d2",
-#   "measurementId": "G-E5K0RHJMQY",
-#   "databaseURL":''
-# }
-
 firebaseConfig = {
   "apiKey": "AIzaSyBUiMfg3XecwfkQPOPXfXpEULaU1BPKUGg",
   "authDomain": "yomcoin-75160.firebaseapp.com",
@@ -222,17 +204,7 @@ firebaseConfig = {
 
 
 
-# {
-#   "apiKey": "AIzaSyBxZfh3AVORHxYwAKWDfWRoZ9Ygfj4OlU0",
-#   "authDomain": "yomcoin-dbd48.firebaseapp.com",
-#   "projectId": "yomcoin-dbd48",
-#   "storageBucket": "yomcoin-dbd48.appspot.com",
-#   "messagingSenderId": "224590385789",
-#   "appId": "1:224590385789:web:da368763bbb2c905e29714",
-#   "measurementId": "G-T74B1C57GV",
-#   "databaseURL":''
-  
-# }
+
 
 
 
@@ -482,13 +454,7 @@ async def buyCablePlan(cableDetail:cablePurchaseModelSchema):
 @app.post("/storeTransactions")
 # transactions will have types, detail, date, owner,status,custom_id
 async def storeTransactions(detail:transactionStoreModel):
-    # result stored
-    # userEmail:str
-    # transactionDetails:str
-    # userId:str
-    # serviceType:str
-    # date:str
-    # customId:str
+    
     customId=f"yomid_{detail.serviceType.lower}_{detail.userId}_{detail.date}"
 
     storedbody={"customId":customId}
@@ -503,13 +469,7 @@ async def storeTransactions(detail:transactionStoreModel):
 # get transactions details
 @app.post("/getTransactions")
 async def storeTransactions(detail:transactionGetModel):
-    # result stored
-    # userEmail:str
-    # transactionDetails:str
-    # userId:str
-    # serviceType:str
-    # date:str
-    # customId:str
+
     if not detail.startDate:
         from datetime import  timedelta
 
@@ -694,14 +654,7 @@ async def getcompanyAddress(detail:getingCompanyAddressModel):
 
 @app.post("/sendCoin")
 async def sendCoin(detail:sendCoinModel):
-    # fixed: str
-    # currency_from:str
-    # currency_to:str
-    # amount:str
-    # address_to:str
-    # extra_id_to:str
-    # user_refund_address:str
-    # user_refund_extra_id:str
+    
     param={
       "fixed":detail.fixed,
       "currency_from": detail.currency_from,
@@ -724,11 +677,7 @@ async def sendCoin(detail:sendCoinModel):
 
 
 
-# '/get_pairs', {
-    #   'api_key': APIKey,
-    #   'fixed': 'false',
-    #   'symbol': currency,
-    # createAddress
+
 
 
 # end points for send coin  ENDED *************************************************************************
@@ -742,9 +691,6 @@ async def  createAddress(detail:createCryptoAddressModelSchema):
     
     # 'https://api.blockcypher.com/v1/ltc/main',
 
-    # param=detail.dict()
-    # param.update({'api_key': ss.API_KEY,
-    # })
 
     response:requests.Response =requests.post(url)
     return  response.json()
@@ -810,13 +756,9 @@ async def  createCryptoWallet(detail:createCryptoWalletModelSchema):
     # {detail.name}"
     data = {"name": detail.name,"addresses": detail.address}
 
-    # params=detail.dict()
-    # params.update({'token':bc.TOKEN})
-    # params.pop('cryptoTokenName')
+    
     print(data)
-    # params={'token':bc.TOKEN}
-    # response:requests.Response =requests.post(url,json=json.dumps(data),headers={"Content-Type": "application/json"}
-                                            #   )
+    
     response=create_wallet_from_address(wallet_name=detail.name, 
                                         address=
                                         detail.address,
@@ -829,8 +771,7 @@ async def  createCryptoWallet(detail:createCryptoWalletModelSchema):
     return response
 
 
-# https://api.paystack.co/transaction/verify/:reference
-# -H "Authorization: Bearer YOUR_SECRET_KEY"
+
 
 # getAddress
 # end points for crypto wallet  ENDED *************************************************************************
@@ -1109,6 +1050,7 @@ async def setFAQS():
 
 
 if __name__=="__main__":
+    # !!!!! please don't delete !!!!!
     # docker tag yomserver us-docker.pkg.dev/yomcoin-75160/gcr.io/yomserver:1.0
     # us-docker.pkg.dev/yomcoin-75160/gcr.io/yomserver:1.0
     # uvicorn.run('main:app', host='192.168.43.239',reload=True)
@@ -1119,8 +1061,7 @@ if __name__=="__main__":
     # uvicorn.run('main:app',reload=True,host="192.168.43.239", port=8080)
     
     # r=requests.post("http://192.168.43.239/getCompanyAddress",data={'userId':"dhsdjh"})
-    # print(r)                                                                                                                                                            
-    # print(r.text)
+    
     
 
     
